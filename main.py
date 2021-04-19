@@ -99,6 +99,9 @@ class SampleApp(tk.Tk):
         data = r.json()
 
 if __name__== "__main__":
-    print("Creating window")
-    app = SampleApp()
-    app.mainloop()
+    try:
+        print("Creating window")
+        app = SampleApp()
+        app.mainloop()
+    except:
+        print("Chyba :'(")
