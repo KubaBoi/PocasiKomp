@@ -129,7 +129,7 @@ class SampleApp(tk.Tk):
         self.rise.configure(text=str(datetime.utcfromtimestamp(weather["sys"]["sunrise"]).strftime("%H:%M:%S")), font=("Arial", 20))
         self.set.configure(text=str(datetime.utcfromtimestamp(weather["sys"]["sunset"]).strftime("%H:%M:%S")), font=("Arial", 20))
 
-        self.feelsLikeL.configure(text="Pocitová teplota:", , font=("Arial", 15))
+        self.feelsLikeL.configure(text="Pocitová teplota:", font=("Arial", 15))
         self.pressureL.configure(text="Tlak:", font=("Arial", 15))
         self.humidityL.configure(text="Vlhkost:", font=("Arial", 15))
         self.windL.configure(text="Rychlost větru:", font=("Arial", 15))
