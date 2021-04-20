@@ -10,7 +10,6 @@ import dbus.mainloop.glib
 import gobject
 import logging
 import traceback
-from lcd import Lcd
 
 SERVICE_NAME = "org.bluez"
 AGENT_IFACE = SERVICE_NAME + '.Agent1'
