@@ -77,11 +77,13 @@ class SampleApp(tk.Tk):
         self.clock.configure(text=now.strftime("%H:%M:%S"))
         self.date.configure(text=now.strftime("%d/%m/%Y"))
 
-        if (time.time() - self.time >= 20):
+        if (time.time() - self.time >= 2):
             self.time = time.time()
+            weather = self.getWeather()
+            self.temp.configure(text=str(weather["main"]["temp"]) + u"\N{DEGREE SIGN}C")
 
             if (self.show == 0):
-                self.setWeather()
+                self.setWeather(weather)
 
             elif (self.show == 1):
                 pass
@@ -95,9 +97,7 @@ class SampleApp(tk.Tk):
 
         self.after(1000, self.update_clock)
 
-    def setWeather(self):
-        weather = self.getWeather()
-        self.temp.configure(text=str(weather["main"]["temp"]) + u"\N{DEGREE SIGN}C")
+    def setWeather(self, weather):
         self.feelsLike.configure(text=str(weather["main"]["feels_like"]) + u"\N{DEGREE SIGN}C")
         self.pressure.configure(text=str(weather["main"]["pressure"]) + " hPa")
         self.humidity.configure(text=str(weather["main"]["humidity"]) + " %")
@@ -135,6 +135,30 @@ class SampleApp(tk.Tk):
 
         r = requests.get(url = URL, params = PARAMS)
         data = r.json()
+
+    def setDevices(self):
+        devices = self.getDevices()
+
+        strDevices = []
+        for d in range(0, 6):
+            if (d < len(devices)):
+                strDevices.append(devices[d])
+            else:
+                strDevices.append(("",""))
+
+        self.feelsLike.configure(text=strDevices[0][1])
+        self.pressure.configure(text=strDevices[1][1])
+        self.humidity.configure(text=strDevices[2][1])
+        self.wind.configure(text=strDevices[3][1])
+        self.rise.configure(text=strDevices[4][1])
+        self.set.configure(text=strDevices[5][1])
+
+        self.feelsLikeL.configure(text=strDevices[0][0])
+        self.pressureL.configure(text=strDevices[1][0])
+        self.humidityL.configure(text=strDevices[2][0])
+        self.windL.configure(text=strDevices[3][0])
+        self.riseL.configure(text=strDevices[4][0])
+        self.setL.configure(text=strDevices[5][0])
 
     def getDevices(self):
         output = check_output(['hcitool', 'con']).decode("utf-8") 
