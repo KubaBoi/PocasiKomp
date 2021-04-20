@@ -108,7 +108,7 @@ class SampleApp(tk.Tk):
         self.after(1000, self.update_clock)
 
     def setSongs(self):
-        title, artist = self.player.showTrack()
+        title, artist = self.player.getInfo()
 
         if (self.show == 0):
             self.song.configure(text=self.formatText(title, 12))

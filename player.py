@@ -93,7 +93,7 @@ class BluePlayer(dbus.service.Object):
         #self.mainloop.run()
 
     def getInfo(self):
-        self.start()
+        self.findPlayer()
         return self.showTrack()
 
     def findPlayer(self):
