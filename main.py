@@ -109,6 +109,8 @@ class SampleApp(tk.Tk):
     def setSongs(self):
         title, artist = self.player.showTrack()
 
+        title = self.formatText(text)
+
         if (self.show == 0):
             self.song.configure(text=title)
 
@@ -189,6 +191,12 @@ class SampleApp(tk.Tk):
             devices.append((name, mac))
 
         return devices
+
+    def formatText(self, text):
+        if (len(text) >= 12):
+            return text[12:] + "..."
+        else:
+            return text
 
 if __name__== "__main__":
     print("Creating window")
