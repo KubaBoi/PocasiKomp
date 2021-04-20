@@ -94,7 +94,7 @@ class BluePlayer(dbus.service.Object):
 
     def getInfo(self):
         self.findPlayer()
-        self.showTrack()
+        return self.showTrack()
 
     def findPlayer(self):
         """Find any current media players and associated device"""
@@ -179,19 +179,23 @@ class BluePlayer(dbus.service.Object):
     def showTrack(self):
         """Display track info on the LCD"""
         lines = []
+        artist = "Unknown"
+        title = "Unknown"
         if "Artist" in self.track:
             lines.append(self.track["Artist"])
+            artist = self.track["Artist"]
             if self.track["Title"]:
                 lines.append(self.track["Title"])
+                title = self.track["Title"]
         elif "Title" in self.track:
             liens.append(self.track["Title"])
+            title = self.track["Title"]
 
-        strLines = []
         print("---")
         for i, line in enumerate(lines):
             print(str(lines[i]), i)
 
-        ##return strLines
+        return (title, artist)
             
 
     def registerAgent(self):

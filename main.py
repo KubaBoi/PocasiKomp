@@ -84,6 +84,8 @@ class SampleApp(tk.Tk):
         self.clock.configure(text=now.strftime("%H:%M:%S"))
         self.date.configure(text=now.strftime("%d/%m/%Y"))
 
+        self.setSongs()
+
         if (time.time() - self.time >= 2):
             self.time = time.time()
             weather = self.getWeather()
@@ -104,6 +106,16 @@ class SampleApp(tk.Tk):
 
         self.after(1000, self.update_clock)
 
+    def setSongs(self):
+        title, artist = self.player.showTrack()
+
+        if (self.show == 0):
+            self.song.configure(text=title)
+
+        if (self.show == 1):
+            self.feelsLikeL.configure(text=title)
+            self.pressureL.configure(text=artist, font=("Arial", 10))
+
     def setWeather(self, weather):
         self.feelsLike.configure(text=str(weather["main"]["feels_like"]) + u"\N{DEGREE SIGN}C", font=("Arial", 20))
         self.pressure.configure(text=str(weather["main"]["pressure"]) + " hPa", font=("Arial", 20))
@@ -113,7 +125,7 @@ class SampleApp(tk.Tk):
         self.set.configure(text=str(datetime.utcfromtimestamp(weather["sys"]["sunset"]).strftime("%H:%M:%S")), font=("Arial", 20))
 
         self.feelsLikeL.configure(text="Pocitová teplota:")
-        self.pressureL.configure(text="Tlak:")
+        self.pressureL.configure(text="Tlak:", font=("Arial", 15))
         self.humidityL.configure(text="Vlhkost:")
         self.windL.configure(text="Rychlost větru:")
         self.riseL.configure(text="Východ Slunce:")
@@ -147,21 +159,17 @@ class SampleApp(tk.Tk):
         devices = self.getDevices()
 
         strDevices = []
-        for d in range(0, 6):
+        for d in range(2, 6):
             if (d < len(devices)):
                 strDevices.append(devices[d])
             else:
                 strDevices.append(("",""))
 
-        self.feelsLike.configure(text=strDevices[0][1], font=("Arial", 10))
-        self.pressure.configure(text=strDevices[1][1], font=("Arial", 10))
         self.humidity.configure(text=strDevices[2][1], font=("Arial", 10))
         self.wind.configure(text=strDevices[3][1], font=("Arial", 10))
         self.rise.configure(text=strDevices[4][1], font=("Arial", 10))
         self.set.configure(text=strDevices[5][1], font=("Arial", 10))
 
-        self.feelsLikeL.configure(text=strDevices[0][0])
-        self.pressureL.configure(text=strDevices[1][0])
         self.humidityL.configure(text=strDevices[2][0])
         self.windL.configure(text=strDevices[3][0])
         self.riseL.configure(text=strDevices[4][0])
