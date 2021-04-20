@@ -194,7 +194,7 @@ class SampleApp(tk.Tk):
 
     def formatText(self, text):
         if (len(text) >= 12):
-            return text[12:] + "..."
+            return text[:12] + "..."
         else:
             return text
 
