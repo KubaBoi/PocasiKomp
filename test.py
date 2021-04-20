@@ -92,6 +92,10 @@ class BluePlayer(dbus.service.Object):
         #self.mainloop = gobject.MainLoop()
         #self.mainloop.run()
 
+    def getInfo(self):
+        self.findPlayer()
+        self.showTrack()
+
     def findPlayer(self):
         """Find any current media players and associated device"""
         manager = dbus.Interface(self.bus.get_object("org.bluez", "/"), "org.freedesktop.DBus.ObjectManager")
@@ -180,11 +184,15 @@ class BluePlayer(dbus.service.Object):
             if self.track["Title"]:
                 lines.append(self.track["Title"])
         elif "Title" in self.track:
-            self.track["Title"]
+            liens.append(self.track["Title"])
 
+        strLines = []
         print("---")
         for i, line in enumerate(lines):
-            print(lines[i], i)
+            print(str(lines[i]), i)
+
+        ##return strLines
+            
 
     def registerAgent(self):
         """Register BluePlayer as the default agent"""
