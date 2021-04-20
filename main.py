@@ -115,7 +115,7 @@ class SampleApp(tk.Tk):
 
         elif (self.show == 1):
             self.song.configure(text="")
-            self.feelsLikeL.configure(text=self.formatText(title, 20))
+            self.feelsLikeL.configure(text=self.formatText(title, 30), font=("Arial", 20))
             self.pressureL.configure(text=artist, font=("Arial", 10))
 
             self.feelsLike.configure(text="")
@@ -129,12 +129,12 @@ class SampleApp(tk.Tk):
         self.rise.configure(text=str(datetime.utcfromtimestamp(weather["sys"]["sunrise"]).strftime("%H:%M:%S")), font=("Arial", 20))
         self.set.configure(text=str(datetime.utcfromtimestamp(weather["sys"]["sunset"]).strftime("%H:%M:%S")), font=("Arial", 20))
 
-        self.feelsLikeL.configure(text="Pocitová teplota:")
+        self.feelsLikeL.configure(text="Pocitová teplota:", , font=("Arial", 15))
         self.pressureL.configure(text="Tlak:", font=("Arial", 15))
-        self.humidityL.configure(text="Vlhkost:")
-        self.windL.configure(text="Rychlost větru:")
-        self.riseL.configure(text="Východ Slunce:")
-        self.setL.configure(text="Západ Slunce:")
+        self.humidityL.configure(text="Vlhkost:", font=("Arial", 15))
+        self.windL.configure(text="Rychlost větru:", font=("Arial", 15))
+        self.riseL.configure(text="Východ Slunce:", font=("Arial", 15))
+        self.setL.configure(text="Západ Slunce:", font=("Arial", 15))
 
     def getWeather(self):
         URL = "http://api.openweathermap.org/data/2.5/weather"
@@ -175,10 +175,10 @@ class SampleApp(tk.Tk):
         self.rise.configure(text=strDevices[2][1], font=("Arial", 10))
         self.set.configure(text=strDevices[3][1], font=("Arial", 10))
 
-        self.humidityL.configure(text=strDevices[0][0])
-        self.windL.configure(text=strDevices[1][0])
-        self.riseL.configure(text=strDevices[2][0])
-        self.setL.configure(text=strDevices[3][0])
+        self.humidityL.configure(text=strDevices[0][0], font=("Arial", 10))
+        self.windL.configure(text=strDevices[1][0], font=("Arial", 10))
+        self.riseL.configure(text=strDevices[2][0], font=("Arial", 10))
+        self.setL.configure(text=strDevices[3][0], font=("Arial", 10))
 
     def getDevices(self):
         output = check_output(['hcitool', 'con']).decode("utf-8") 
