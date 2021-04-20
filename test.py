@@ -104,7 +104,7 @@ class BluePlayer(dbus.service.Object):
 
         player_path = None
         transport_path = None
-        for path, interfaces in objects.iteritems():
+        for path, interfaces in objects.items():
             if PLAYER_IFACE in interfaces:
                 player_path = path
             if TRANSPORT_IFACE in interfaces:
