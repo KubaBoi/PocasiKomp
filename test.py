@@ -89,8 +89,8 @@ class BluePlayer(dbus.service.Object):
         self.showTrack()
 
         """Start the BluePlayer by running the gobject mainloop()"""
-        self.mainloop = gobject.MainLoop()
-        self.mainloop.run()
+        #self.mainloop = gobject.MainLoop()
+        #self.mainloop.run()
 
     def findPlayer(self):
         """Find any current media players and associated device"""
