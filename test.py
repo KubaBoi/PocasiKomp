@@ -203,7 +203,6 @@ class BluePlayer(dbus.service.Object):
         manager.RequestDefaultAgent(BluePlayer.AGENT_PATH)
         logging.debug("Blueplayer is registered as a default agent")
 
-logging.basicConfig(filename=LOG_FILE, format=LOG_FORMAT, level=LOG_LEVEL)
 logging.info("Starting BluePlayer")
 
 #gobject.threads_init()
