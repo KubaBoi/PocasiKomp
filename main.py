@@ -43,7 +43,7 @@ class SampleApp(tk.Tk):
         self.date.grid(row=1, column=0, sticky="W")
 
         self.song = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 20), text="song")
-        self.song.grid(row=1, column=0, sticky="W")
+        self.song.grid(row=1, column=1, sticky="W")
 
 
         self.feelsLikeL = tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Pocitová teplota:")
