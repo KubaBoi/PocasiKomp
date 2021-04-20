@@ -109,6 +109,7 @@ class BluePlayer(dbus.service.Object):
             self.connected = True
             self.getPlayer(player_path)
             player_properties = self.player.GetAll(PLAYER_IFACE, dbus_interface="org.freedesktop.DBus.Properties")
+            print(player_properties)
             if "Status" in player_properties:
                 self.status = player_properties["Status"]
             if "Track" in player_properties:
