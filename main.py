@@ -86,7 +86,7 @@ class SampleApp(tk.Tk):
                 self.setWeather(weather)
 
             elif (self.show == 1):
-                pass
+                self.setDevices()
 
             self.showCounter += 1
             if (self.showCounter >= self.showFrequency):
