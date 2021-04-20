@@ -112,9 +112,12 @@ class SampleApp(tk.Tk):
         if (self.show == 0):
             self.song.configure(text=title)
 
-        if (self.show == 1):
+        elif (self.show == 1):
             self.feelsLikeL.configure(text=title)
             self.pressureL.configure(text=artist, font=("Arial", 10))
+
+            self.feelsLike.configure(text="")
+            self.pressure.configure(text="")
 
     def setWeather(self, weather):
         self.feelsLike.configure(text=str(weather["main"]["feels_like"]) + u"\N{DEGREE SIGN}C", font=("Arial", 20))
