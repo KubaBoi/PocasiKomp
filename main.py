@@ -180,9 +180,12 @@ class SampleApp(tk.Tk):
         return devices
 
 if __name__== "__main__":
-    try:
+    print("Creating window")
+    app = SampleApp()
+    app.mainloop()
+    """try:
         print("Creating window")
         app = SampleApp()
         app.mainloop()
     except:
-        print("Chyba :'(")
+        print("Chyba :'(")"""
