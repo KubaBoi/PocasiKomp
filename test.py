@@ -110,12 +110,10 @@ class BluePlayer(dbus.service.Object):
             self.connected = True
             self.getPlayer(player_path)
             player_properties = self.player.GetAll(PLAYER_IFACE, dbus_interface="org.freedesktop.DBus.Properties")
-            print(player_properties)
             if "Status" in player_properties:
                 self.status = player_properties["Status"]
             if "Track" in player_properties:
                 self.track = player_properties["Track"]
-                print(self.track)
         else:
             logging.debug("Could not find player")
 
@@ -184,8 +182,9 @@ class BluePlayer(dbus.service.Object):
             if self.track["Title"]:
                 lines.append(self.track["Title"])
         elif "Title" in self.track:
-            print(self.track["Title"])
+            self.track["Title"]
 
+        print("---")
         for i, line in enumerate(lines):
             print(lines[i], i)
 
