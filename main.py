@@ -162,7 +162,7 @@ class SampleApp(tk.Tk):
         devices = self.getDevices()
 
         strDevices = []
-        for d in range(2, 6):
+        for d in range(0, 4):
             if (d < len(devices)):
                 strDevices.append(devices[d])
             else:
