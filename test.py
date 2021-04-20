@@ -114,6 +114,7 @@ class BluePlayer(dbus.service.Object):
                 self.status = player_properties["Status"]
             if "Track" in player_properties:
                 self.track = player_properties["Track"]
+                print(self.track)
         else:
             logging.debug("Could not find player")
 
