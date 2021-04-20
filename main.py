@@ -98,12 +98,12 @@ class SampleApp(tk.Tk):
         self.after(1000, self.update_clock)
 
     def setWeather(self, weather):
-        self.feelsLike.configure(text=str(weather["main"]["feels_like"]) + u"\N{DEGREE SIGN}C")
-        self.pressure.configure(text=str(weather["main"]["pressure"]) + " hPa")
-        self.humidity.configure(text=str(weather["main"]["humidity"]) + " %")
-        self.wind.configure(text=str(weather["wind"]["speed"]) + " m/s")
-        self.rise.configure(text=str(datetime.utcfromtimestamp(weather["sys"]["sunrise"]).strftime("%H:%M:%S")))
-        self.set.configure(text=str(datetime.utcfromtimestamp(weather["sys"]["sunset"]).strftime("%H:%M:%S")))
+        self.feelsLike.configure(text=str(weather["main"]["feels_like"]) + u"\N{DEGREE SIGN}C", font=("Arial", 20))
+        self.pressure.configure(text=str(weather["main"]["pressure"]) + " hPa", font=("Arial", 20))
+        self.humidity.configure(text=str(weather["main"]["humidity"]) + " %", font=("Arial", 20))
+        self.wind.configure(text=str(weather["wind"]["speed"]) + " m/s", font=("Arial", 20))
+        self.rise.configure(text=str(datetime.utcfromtimestamp(weather["sys"]["sunrise"]).strftime("%H:%M:%S")), font=("Arial", 20))
+        self.set.configure(text=str(datetime.utcfromtimestamp(weather["sys"]["sunset"]).strftime("%H:%M:%S")), font=("Arial", 20))
 
         self.feelsLikeL.configure(text="Pocitová teplota:")
         self.pressureL.configure(text="Tlak:")
@@ -146,12 +146,12 @@ class SampleApp(tk.Tk):
             else:
                 strDevices.append(("",""))
 
-        self.feelsLike.configure(text=strDevices[0][1])
-        self.pressure.configure(text=strDevices[1][1])
-        self.humidity.configure(text=strDevices[2][1])
-        self.wind.configure(text=strDevices[3][1])
-        self.rise.configure(text=strDevices[4][1])
-        self.set.configure(text=strDevices[5][1])
+        self.feelsLike.configure(text=strDevices[0][1], font=("Arial", 10))
+        self.pressure.configure(text=strDevices[1][1], font=("Arial", 10))
+        self.humidity.configure(text=strDevices[2][1], font=("Arial", 10))
+        self.wind.configure(text=strDevices[3][1], font=("Arial", 10))
+        self.rise.configure(text=strDevices[4][1], font=("Arial", 10))
+        self.set.configure(text=strDevices[5][1], font=("Arial", 10))
 
         self.feelsLikeL.configure(text=strDevices[0][0])
         self.pressureL.configure(text=strDevices[1][0])
@@ -168,7 +168,7 @@ class SampleApp(tk.Tk):
         for d in range(1, len(lines)):
             mac = lines[d].strip().split(" ")[1] #ziska mac adresu
             name = check_output(["hcitool", "name", mac]).decode("utf-8").rstrip() #ziska jmeno zarizeni
-            devices.append((mac, name))
+            devices.append((name, mac))
 
         return devices
 
