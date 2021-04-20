@@ -168,7 +168,7 @@ class SampleApp(tk.Tk):
         for d in range(1, len(lines)):
             mac = lines[d].strip().split(" ")[1] #ziska mac adresu
             name = check_output(["hcitool", "name", mac]).decode("utf-8").rstrip() #ziska jmeno zarizeni
-            devices.append((name, mac))
+            devices.append((mac, name))
 
         return devices
 
