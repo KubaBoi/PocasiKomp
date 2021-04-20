@@ -64,7 +64,6 @@ class BluePlayer(dbus.service.Object):
 
     def start(self):
         """Initialize gobject, start the LCD, and find any current media players"""
-        gobject.threads_init()
         dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
 
         self.bus = dbus.SystemBus()
