@@ -84,16 +84,12 @@ class SampleApp(tk.Tk):
         self.clock.configure(text=now.strftime("%H:%M:%S"))
         self.date.configure(text=now.strftime("%d/%m/%Y"))
 
+        self.setSongs()
+
         if (time.time() - self.time >= 2):
             self.time = time.time()
             weather = self.getWeather()
             self.temp.configure(text=str(weather["main"]["temp"]) + u"\N{DEGREE SIGN}C")
-
-            if (self.show == 0):
-                self.setWeather(weather)
-
-            elif (self.show == 1):
-                self.setDevices()
 
             self.showCounter += 1
             if (self.showCounter >= self.showFrequency):
@@ -102,7 +98,11 @@ class SampleApp(tk.Tk):
                 if (self.show >= self.countShow):
                     self.show = 0
 
-        self.setSongs()
+            if (self.show == 0):
+                self.setWeather(weather)
+
+            elif (self.show == 1):
+                self.setDevices()
 
         self.after(1000, self.update_clock)
 
