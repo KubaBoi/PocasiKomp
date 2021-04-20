@@ -189,7 +189,7 @@ class BluePlayer(dbus.service.Object):
         strLines = []
         print("---")
         for i, line in enumerate(lines):
-            print(str(lines[i]), i)
+            print(lines[i], i)
 
         ##return strLines
             
