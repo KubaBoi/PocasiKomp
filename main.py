@@ -109,7 +109,7 @@ class SampleApp(tk.Tk):
     def setSongs(self):
         title, artist = self.player.showTrack()
 
-        title = self.formatText(text)
+        title = self.formatText(title)
 
         if (self.show == 0):
             self.song.configure(text=title)
