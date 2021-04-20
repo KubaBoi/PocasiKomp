@@ -14,6 +14,15 @@ class SampleApp(tk.Tk):
         self.attributes("-fullscreen", True)
         self.grid_columnconfigure(0, weight=200)
 
+        """
+        0 - weather
+        1 - bluetooth
+        """
+        self.show = 0 #stav obrazovky
+        self.countShow = 2 #pocet obrazovek
+        self.showCounter = 0 #doba trvani obrazovky
+        self.showFrequency = 1 #doba stridani obrazovek
+
         self.bg = "#000000"
         self.fg = "#eeeeee"
         self.configure(bg=self.bg)
@@ -30,27 +39,33 @@ class SampleApp(tk.Tk):
         self.temp.grid(row=0, column=1, sticky="NE")
 
 
-        tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Pocitová teplota:").grid(sticky="W", column=0, row=2)
+        self.feelsLikeL = tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Pocitová teplota:")
+        self.feelsLikeL.grid(sticky="W", column=0, row=2)
         self.feelsLike = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 20), text="pocitova")
         self.feelsLike.grid(row=2, column=1, sticky="W")
 
-        tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Tlak:").grid(sticky="W", column=0, row=3)
+        self.pressureL = tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Tlak:")
+        self.pressureL.grid(sticky="W", column=0, row=3)
         self.pressure = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 20), text="tlak")
         self.pressure.grid(row=3, column=1, sticky="W")
 
-        tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Vlhkost:").grid(sticky="W", column=0, row=4)
+        self.humidityL = tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Vlhkost:")
+        self.humidityL.grid(sticky="W", column=0, row=4)
         self.humidity = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 20), text="vlhkost")
         self.humidity.grid(row=4, column=1, sticky="W")
 
-        tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Rychlost větru:").grid(sticky="W", column=0, row=5)
+        self.windL = tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Rychlost větru:")
+        self.windL.grid(sticky="W", column=0, row=5)
         self.wind = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 20), text="vitr")
         self.wind.grid(row=5, column=1, sticky="W")
 
-        tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Východ Slunce:").grid(stick="W", column=0, row=6)
+        self.riseL = tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Východ Slunce:")
+        self.riseL.grid(stick="W", column=0, row=6)
         self.rise = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 20), text="vychod")
         self.rise.grid(row=6, column=1, sticky="W")
 
-        tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Západ Slunce:").grid(stick="W", column=0, row=7)
+        self.setL = tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Západ Slunce:")
+        self.setL.grid(stick="W", column=0, row=7)
         self.set = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 20), text="zapad")
         self.set.grid(row=7, column=1, sticky="W")
 
@@ -64,16 +79,38 @@ class SampleApp(tk.Tk):
 
         if (time.time() - self.time >= 20):
             self.time = time.time()
-            weather = self.getWeather()
-            self.temp.configure(text=str(weather["main"]["temp"]) + u"\N{DEGREE SIGN}C")
-            self.feelsLike.configure(text=str(weather["main"]["feels_like"]) + u"\N{DEGREE SIGN}C")
-            self.pressure.configure(text=str(weather["main"]["pressure"]) + " hPa")
-            self.humidity.configure(text=str(weather["main"]["humidity"]) + " %")
-            self.wind.configure(text=str(weather["wind"]["speed"]) + " m/s")
-            self.rise.configure(text=str(datetime.utcfromtimestamp(weather["sys"]["sunrise"]).strftime("%H:%M:%S")))
-            self.set.configure(text=str(datetime.utcfromtimestamp(weather["sys"]["sunset"]).strftime("%H:%M:%S")))
+
+            if (self.show == 0):
+                self.setWeather()
+
+            elif (self.show == 1):
+                pass
+
+            self.showCounter += 1
+            if (self.showCounter >= self.showFrequency):
+                self.showCounter = 0
+                self.show += 1
+                if (self.show >= self.countShow):
+                    self.show = 0
 
         self.after(1000, self.update_clock)
+
+    def setWeather(self):
+        weather = self.getWeather()
+        self.temp.configure(text=str(weather["main"]["temp"]) + u"\N{DEGREE SIGN}C")
+        self.feelsLike.configure(text=str(weather["main"]["feels_like"]) + u"\N{DEGREE SIGN}C")
+        self.pressure.configure(text=str(weather["main"]["pressure"]) + " hPa")
+        self.humidity.configure(text=str(weather["main"]["humidity"]) + " %")
+        self.wind.configure(text=str(weather["wind"]["speed"]) + " m/s")
+        self.rise.configure(text=str(datetime.utcfromtimestamp(weather["sys"]["sunrise"]).strftime("%H:%M:%S")))
+        self.set.configure(text=str(datetime.utcfromtimestamp(weather["sys"]["sunset"]).strftime("%H:%M:%S")))
+
+        self.feelsLikeL.configure(text="Pocitová teplota:")
+        self.pressureL.configure(text="Tlak:")
+        self.humidityL.configure(text="Vlhkost:")
+        self.windL.configure(text="Rychlost větru:")
+        self.riseL.configure(text="Východ Slunce:")
+        self.setL.configure(text="Západ Slunce:")
 
     def getWeather(self):
         URL = "http://api.openweathermap.org/data/2.5/weather"
