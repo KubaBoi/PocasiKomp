@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Dependencies:
 # sudo apt-get install -y python-gobject
 # sudo apt-get install -y python-smbus
@@ -30,7 +32,7 @@ def getManagedObjects():
     return manager.GetManagedObjects()
 
 def findAdapter():
-    objects = getManagedObjects();
+    objects = getManagedObjects()
     bus = dbus.SystemBus()
     for path, ifaces in objects.iteritems():
         adapter = ifaces.get(ADAPTER_IFACE)
@@ -189,7 +191,7 @@ class BluePlayer(dbus.service.Object):
         strLines = []
         print("---")
         for i, line in enumerate(lines):
-            print(lines[i], i)
+            print(str(lines[i]), i)
 
         ##return strLines
             
