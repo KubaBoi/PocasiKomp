@@ -115,7 +115,7 @@ class SampleApp(tk.Tk):
 
         elif (self.show == 1):
             self.song.configure(text="")
-            self.feelsLikeL.configure(text=text=self.formatText(title, 20))
+            self.feelsLikeL.configure(text=self.formatText(title, 20))
             self.pressureL.configure(text=artist, font=("Arial", 10))
 
             self.feelsLike.configure(text="")
