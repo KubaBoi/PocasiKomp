@@ -165,14 +165,12 @@ class BluePlayer(dbus.service.Object):
                 logging.debug("Status has changed to [{}]".format(changed["Status"]))
                 self.status = (changed["Status"])
     
-        self.updateDisplay()
 
     def adapterHandler(self, interface, changed, invalidated, path):
         """Handle relevant property change signals"""
         if "Discoverable" in changed:
                 logging.debug("Adapter dicoverable is [{}]".format(self.discoverable))
                 self.discoverable = changed["Discoverable"]
-                self.updateDisplay()
 
     def showTrack(self):
         """Display track info on the LCD"""
