@@ -34,7 +34,7 @@ def getManagedObjects():
 def findAdapter():
     objects = getManagedObjects()
     bus = dbus.SystemBus()
-    for path, ifaces in objects.iteritems():
+    for path, ifaces in objects.items():
         adapter = ifaces.get(ADAPTER_IFACE)
         if adapter is None:
             continue
