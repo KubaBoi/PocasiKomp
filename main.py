@@ -109,12 +109,13 @@ class SampleApp(tk.Tk):
     def setSongs(self):
         title, artist = self.player.showTrack()
 
-        title = self.formatText(title)
+        formatedTitle = self.formatText(title)
 
         if (self.show == 0):
-            self.song.configure(text=title)
+            self.song.configure(text=formatedTitle)
 
         elif (self.show == 1):
+            self.song.configure(text="")
             self.feelsLikeL.configure(text=title)
             self.pressureL.configure(text=artist, font=("Arial", 10))
 
