@@ -168,15 +168,15 @@ class SampleApp(tk.Tk):
             else:
                 strDevices.append(("",""))
 
-        self.humidity.configure(text=strDevices[2][1], font=("Arial", 10))
-        self.wind.configure(text=strDevices[3][1], font=("Arial", 10))
-        self.rise.configure(text=strDevices[4][1], font=("Arial", 10))
-        self.set.configure(text=strDevices[5][1], font=("Arial", 10))
+        self.humidity.configure(text=strDevices[0][1], font=("Arial", 10))
+        self.wind.configure(text=strDevices[1][1], font=("Arial", 10))
+        self.rise.configure(text=strDevices[2][1], font=("Arial", 10))
+        self.set.configure(text=strDevices[3][1], font=("Arial", 10))
 
-        self.humidityL.configure(text=strDevices[2][0])
-        self.windL.configure(text=strDevices[3][0])
-        self.riseL.configure(text=strDevices[4][0])
-        self.setL.configure(text=strDevices[5][0])
+        self.humidityL.configure(text=strDevices[0][0])
+        self.windL.configure(text=strDevices[1][0])
+        self.riseL.configure(text=strDevices[2][0])
+        self.setL.configure(text=strDevices[3][0])
 
     def getDevices(self):
         output = check_output(['hcitool', 'con']).decode("utf-8") 
