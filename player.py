@@ -200,20 +200,3 @@ class BluePlayer(dbus.service.Object):
         manager.RegisterAgent(BluePlayer.AGENT_PATH, BluePlayer.CAPABILITY)
         manager.RequestDefaultAgent(BluePlayer.AGENT_PATH)
         logging.debug("Blueplayer is registered as a default agent")
-
-logging.info("Starting BluePlayer")
-
-#gobject.threads_init()
-#dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-
-player = None
-try:
-    player = BluePlayer()
-    player.start()
-except KeyboardInterrupt as ex:
-    logging.info("BluePlayer cancelled by user")
-except Exception as ex:
-    logging.error("How embarrassing. The following error occurred {}".format(ex))
-    traceback.print_exc()
-finally:
-    print("spadlo to")
