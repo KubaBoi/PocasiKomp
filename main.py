@@ -5,6 +5,7 @@ from datetime import datetime
 import tkinter as tk
 import requests
 from subprocess import call, check_output
+from player import BluePlayer
 
 print("Starting program")
 
@@ -13,6 +14,9 @@ class SampleApp(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
         self.attributes("-fullscreen", True)
         self.grid_columnconfigure(0, weight=200)
+
+        self.player = BluePlayer()
+        self.player.start()
 
         """
         0 - weather
@@ -32,11 +36,14 @@ class SampleApp(tk.Tk):
         self.clock = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 50), text="hodiny")
         self.clock.grid(row=0, column=0, sticky="W")
 
+        self.temp = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 40), text="teplota")
+        self.temp.grid(row=0, column=1, sticky="NE")
+
         self.date = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 20), text="datum")
         self.date.grid(row=1, column=0, sticky="W")
 
-        self.temp = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 40), text="teplota")
-        self.temp.grid(row=0, column=1, sticky="NE")
+        self.song = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 20), text="song")
+        self.song.grid(row=1, column=0, sticky="W")
 
 
         self.feelsLikeL = tk.Label(self, font=("Arial", 15), bg=self.bg, fg=self.fg, text="Pocitová teplota:")

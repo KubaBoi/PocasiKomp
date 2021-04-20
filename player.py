@@ -87,7 +87,6 @@ class BluePlayer(dbus.service.Object):
 
 
         self.findPlayer()
-        self.showTrack()
 
         """Start the BluePlayer by running the gobject mainloop()"""
         #self.mainloop = gobject.MainLoop()
