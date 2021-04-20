@@ -84,8 +84,6 @@ class SampleApp(tk.Tk):
         self.clock.configure(text=now.strftime("%H:%M:%S"))
         self.date.configure(text=now.strftime("%d/%m/%Y"))
 
-        self.setSongs()
-
         if (time.time() - self.time >= 2):
             self.time = time.time()
             weather = self.getWeather()
@@ -103,6 +101,8 @@ class SampleApp(tk.Tk):
                 self.show += 1
                 if (self.show >= self.countShow):
                     self.show = 0
+
+        self.setSongs()
 
         self.after(1000, self.update_clock)
 
