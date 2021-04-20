@@ -42,7 +42,7 @@ class SampleApp(tk.Tk):
         self.date = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 20), text="datum")
         self.date.grid(row=1, column=0, sticky="W")
 
-        self.song = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 20), text="song")
+        self.song = tk.Label(self, bg=self.bg, fg=self.fg, font=("Arial", 20), text="")
         self.song.grid(row=1, column=1, sticky="W")
 
 
