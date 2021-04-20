@@ -187,6 +187,13 @@ class BluePlayer(dbus.service.Object):
         for i, line in enumerate(lines):
             print(lines[i], i)
 
+    def registerAgent(self):
+        """Register BluePlayer as the default agent"""
+        manager = dbus.Interface(self.bus.get_object(SERVICE_NAME, "/org/bluez"), "org.bluez.AgentManager1")
+        manager.RegisterAgent(BluePlayer.AGENT_PATH, BluePlayer.CAPABILITY)
+        manager.RequestDefaultAgent(BluePlayer.AGENT_PATH)
+        logging.debug("Blueplayer is registered as a default agent")
+
 logging.basicConfig(filename=LOG_FILE, format=LOG_FORMAT, level=LOG_LEVEL)
 logging.info("Starting BluePlayer")
 
