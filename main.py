@@ -98,6 +98,7 @@ class SampleApp(tk.Tk):
                 if (self.show >= self.countShow):
                     self.show = 0
 
+            self.setSongs()
             if (self.show == 0):
                 self.setWeather(weather)
 
@@ -109,14 +110,12 @@ class SampleApp(tk.Tk):
     def setSongs(self):
         title, artist = self.player.showTrack()
 
-        formatedTitle = self.formatText(title)
-
         if (self.show == 0):
-            self.song.configure(text=formatedTitle)
+            self.song.configure(text=self.formatText(title, 12))
 
         elif (self.show == 1):
             self.song.configure(text="")
-            self.feelsLikeL.configure(text=title)
+            self.feelsLikeL.configure(text=text=self.formatText(title, 20))
             self.pressureL.configure(text=artist, font=("Arial", 10))
 
             self.feelsLike.configure(text="")
@@ -193,9 +192,9 @@ class SampleApp(tk.Tk):
 
         return devices
 
-    def formatText(self, text):
-        if (len(text) >= 12):
-            return text[:12] + "..."
+    def formatText(self, text, length):
+        if (len(text) >= length):
+            return text[:length] + "..."
         else:
             return text
 
