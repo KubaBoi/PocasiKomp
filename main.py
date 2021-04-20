@@ -86,7 +86,7 @@ class SampleApp(tk.Tk):
 
         self.setSongs()
 
-        if (time.time() - self.time >= 2):
+        if (time.time() - self.time >= 20):
             self.time = time.time()
             weather = self.getWeather()
             self.temp.configure(text=str(weather["main"]["temp"]) + u"\N{DEGREE SIGN}C")
