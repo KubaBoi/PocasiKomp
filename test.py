@@ -209,4 +209,4 @@ except Exception as ex:
     logging.error("How embarrassing. The following error occurred {}".format(ex))
     traceback.print_exc()
 finally:
-    pass
+    print("spadlo to")
